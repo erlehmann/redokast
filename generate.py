@@ -12,7 +12,7 @@ lookup = TemplateLookup(
     output_encoding='utf-8',
     encoding_errors='replace')
 
-for number, episode in enumerate(episodes):
+for number, episode in episodes.iteritems():
     template = lookup.get_template('episode.mako')
     print template.render_unicode(
         album=album,
