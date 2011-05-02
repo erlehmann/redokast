@@ -14,7 +14,7 @@ lookup = TemplateLookup(
 
 for number, episode in episodes.iteritems():
     template = lookup.get_template('episode.mako')
-    print template.render_unicode(
+    print template.render(
         album=album,
         artist=artist,
         episode=episode,
