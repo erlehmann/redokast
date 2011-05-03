@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<meta encoding=utf8>\
+<meta charset=utf8>\
 
 <title>\
 <%block name="title"/>\
