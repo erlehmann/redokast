@@ -1,0 +1,519 @@
+/* Poor man's reset */
+
+* {
+    border: none;
+    font: inherit;
+    font-size: 100%;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: baseline;
+}
+
+/* Global attributes */
+
+[id] {}
+
+[title] {
+    border-bottom: 1px dotted;
+    border-bottom-style: dotted !important;
+    cursor: help;
+}
+
+h1 [title] {
+    border-bottom-width: 2px;
+}
+
+[lang] {}
+[dir] {}
+[class] {}
+[style] {}
+
+[hidden] {
+    display: none;
+}
+
+/* root element */
+
+html {
+    font-family: "Droid Sans", sans-serif;
+    padding: 2em;
+}
+
+/* Sections */
+
+body {
+    margin: auto;
+    width: 60em;
+}
+
+section,
+nav,
+article,
+aside {
+    display: block;
+    margin: 1.5em auto;
+}
+
+nav,
+aside,
+article {
+    border: 1px solid;
+    padding: 1.5em;
+}
+
+section {}
+nav {}
+
+article {
+    position: relative;
+    width: 37em;  /* <http://webtypography.net/Rhythm_and_Proportion/Horizontal_Motion/2.1.2/> */
+}
+
+article > *,
+article > section > * {
+    display: block;
+    margin: 1.5em auto;  /* <http://webtypography.net/Rhythm_and_Proportion/Vertical_Motion/2.2.2/> */
+}
+
+article > :first-child,
+article > section > :first-child,
+article > section + h3 {
+    margin: 0 auto;
+}
+
+article > :last-child,
+article > section > :last-child {
+    margin-bottom: 0;
+}
+
+aside {
+    position: absolute;
+}
+
+aside::before {
+    border-style: solid dotted;
+    border-width: 1px 2px;
+    content: "";
+    display: block;
+    height: 3em;
+    left: 4em;
+    opacity: 0.5;
+    top: -1.5em;
+    position: absolute;
+    width: 5em;
+}
+
+body > aside {
+    width: 15em;
+    margin-left: -5em;
+}
+
+article > aside {
+    position: absolute;
+    left: -15em;
+    -webkit-transform: translateY(-3em);
+    -moz-transform: translateY(-3em);
+    -o-transform: translateY(-3em);
+    transform: translateY(-3em);
+    width: 10em;
+    z-index: -1;
+}
+
+article > aside:nth-of-type(odd) {
+    left: -15em;
+}
+
+article > aside:nth-of-type(even) {
+    left: 41.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+nav > h1 {
+    display: none;
+}
+
+article > header > h1:not(:first-child) {
+    margin-top: 0.75em;
+}
+
+section h1, nav h1, article h1, aside h1,
+h2 {
+    font-size: 2em;
+    line-height: 1.5;  /* <http://webtypography.net/Rhythm_and_Proportion/Vertical_Motion/2.2.2/> */
+}
+
+section section h1, section nav h1, section article h1, section aside h1,
+article section h1, article nav h1, article article h1, article aside h1,
+section hgroup > h2, nav hgroup > h2, article hgroup > h2, aside hgroup > h2,
+h3 {
+    font-size: 1.5em;
+    line-height: 1.33;  /* <http://webtypography.net/Rhythm_and_Proportion/Vertical_Motion/2.2.2/> */
+}
+
+hgroup {}
+
+header {
+    position: relative;
+}
+
+article > header > :not(h1):not(hgroup),
+article > footer > * {
+    display: inline-block;
+    width: 49%
+}
+
+article > header > :not(h1):not(hgroup):nth-child(1),
+article > footer > :nth-child(1) {
+    text-align: left;
+
+}
+
+article > header > :not(h1):not(hgroup):nth-child(2),
+article > footer > :nth-child(2) {
+    text-align: right;
+}
+
+footer {
+    display: block;
+    text-align: center;
+}
+
+address {}
+
+/* Grouping content */
+
+p {}
+
+p + p {
+    text-indent: 1.5em;  /* <http://webtypography.net/Rhythm_and_Proportion/Blocks_and_Paragraphs/2.3.2/> */
+    margin-top: 0;
+}
+
+hr {}
+pre {}
+
+blockquote {
+    margin: 1.5em;  /* <http://webtypography.net/Rhythm_and_Proportion/Blocks_and_Paragraphs/2.3.3/> */
+}
+
+blockquote[cite]::after {
+    content: "— <" attr(cite) ">";
+    display: block;
+    font-style: italic;
+    text-align: right;
+}
+
+article ol, article ul {
+    margin: 1.5em;
+}
+
+ol {}
+ul {}
+
+article > * > li {
+    margin: 0.75em auto;
+}
+
+nav > * > li {
+    display: inline-block;
+    margin: auto 0.75em;
+}
+
+nav > * > li:first-child {
+    margin-left: 0;
+}
+
+nav > * > li:last-child {
+    margin-right: 0;
+}
+
+li {}
+
+dl {}
+dt {}
+dd {}
+
+figure {}
+figcaption {}
+
+div {}
+
+/* Text-level semantics */
+
+a {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    cursor: cursor: pointer;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+nav a,
+h1 > a {
+    border-bottom-width: 2px;
+}
+
+a:link {
+}
+
+a:visited {
+}
+
+a:hover {
+}
+
+h1 > a:hover {
+}
+
+a:focus {
+    outline: 1px solid;
+}
+
+nav a,
+h1 > a:focus {
+    outline-width: 2px;
+}
+
+nav a {
+    display: block;
+    font-size: 2em;
+}
+
+em {}
+strong {}
+
+small {
+    font-size: 0.75em;
+    line-height: 2;  /* <http://webtypography.net/Rhythm_and_Proportion/Vertical_Motion/2.2.2/> */
+}
+
+s {}
+
+cite {}
+q {}
+
+dfn {}
+abbr {
+    letter-spacing: 0.1em;  /* <http://webtypography.net/Rhythm_and_Proportion/Horizontal_Motion/2.1.6/> */
+}
+time {}
+
+code,
+var,
+samp,
+kbd {
+    font-family: monospace;
+    overflow-x: auto;
+    padding: 0.1em;
+    white-space: pre;
+}
+
+:not(p) > code,
+:not(p) > samp,
+:not(p) > kbd {
+    display: block;
+    border: 1px solid;    
+}
+
+code {
+}
+
+var {
+    font-style: italic;
+}
+
+samp {
+}
+
+kbd {
+}
+
+article > code,
+article > kbd,
+article > samp {
+    padding: 0.75em;
+}
+
+article > p + code,
+article > p + kbd,
+article > p + samp {
+    margin-top: -0.75em;
+}
+
+article > code + p,
+article > kbd + p,
+article > samp + p {
+    margin-top: -0.75em;
+}
+
+sub, sup {
+    font-size: 0.75em;
+}
+
+sub {
+    vertical-align: sub;
+}
+
+sup {
+    vertical-align: super;
+}
+
+i {
+    font-style: italic;
+}
+b {
+    font-weight: bold;
+}
+
+mark {}
+
+ruby {}
+rt {}
+rp {}
+
+bdi {}
+bdo {}
+
+span {}
+br {}
+wbr {}
+
+/* Edits */
+
+ins {}
+
+article { counter-reset:edit; }
+
+article > ins {
+    display: block;
+    margin: 1.5em auto;
+}
+
+article > ins > p:first-child:before {
+    content: "Nachtrag (" counter(edit, decimal) "): ";
+    counter-increment: edit;
+    font-weight: bold;
+}
+
+article > ins:first-of-type > p:first-child:before {
+    content: "Nachtrag: ";
+    counter-increment: edit;
+}
+
+del {}
+
+/* Embedded content */
+
+img,
+video,
+audio {
+    border: 1px solid;
+    width: 100%;  /* width of parent element */
+}
+
+article > img,
+article > video,
+article > audio {
+    display: block;
+    width: 34em;  /* width of parent article element minus margins (2 × 1.5em) */
+}
+
+article > p + img,
+article > p + video,
+article > p + audio {
+    margin-top: -0.75em;
+}
+
+article > img + p,
+article > video + p,
+article > audio + p {
+    margin-top: -0.75em;
+}
+
+img {}
+
+iframe {}
+
+embed {}
+object {}
+param {}
+
+video {}
+audio {}
+source {}
+track {}
+
+canvas {}
+map {}
+area {}
+
+/* Tabular data */
+
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+    display: table !important;
+}
+
+caption {}
+
+colgroup {}
+col {}
+
+tbody {}
+thead {}
+tfoot {}
+
+tr {}
+
+td,
+th {
+    padding: 0.75em;
+}
+
+td {}
+th {
+    font-weight: bold;
+}
+
+/* Forms */
+
+form {}
+
+fieldset {}
+legend {}
+
+label {}
+input {}
+button {}
+
+select {}
+datalist {}
+optgroup {}
+option {}
+textarea {}
+
+keygen {}
+output {}
+progress {}
+meter {}
+
+/* Interactive elements */
+
+details {}
+summary {}
+
+command {}
+menu {}
+device {}

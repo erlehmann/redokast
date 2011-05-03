@@ -1,0 +1,123 @@
+/* Poor man's color reset */
+
+* {
+    background-color: inherit;
+    border-color: inherit;
+    color: inherit;
+}
+
+/* Global attributes */
+
+[title] {
+    border-bottom-color: black;
+}
+
+/* Sections */
+
+body {
+    background-color: #eeeeec;  /* */
+    background-image: url('noise.png');
+    background-image: -webkit-gradient(
+        radial,
+        center center, 0,
+        center center, 600,
+        from(rgba(238, 238, 236, 0.6)),
+        to(rgba(114, 159, 207, 0))
+    );
+    color: #2e3436;  /* */
+}
+
+section,
+nav,
+article,
+aside {
+    background-color: #ffffff;  /* */
+    color: #2e3436;  /* */
+}
+
+nav,
+aside,
+article {
+    border-color: #888a85;  /* */
+    -webkit-box-shadow: 0 1px 4px #babdb6, 0 0 4em #eeeeec inset;
+    -moz-box-shadow: 0 1px 4px #babdb6, 0 0 4em #eeeeec inset;
+    -o-box-shadow: 0 1px 4px #babdb6, 0 0 4em #eeeeec inset;
+    box-shadow: 0 1px 4px #babdb6, 0 0 4em #eeeeec inset;
+}
+
+a:link {
+    background-color: #ffffff;
+    border-color: #204a87;  /* */
+    color: #204a87;  /* */
+}
+
+a:visited {
+    background-color: #ffffff;
+    border-color: #5c3566;  /* */
+    color: #5c3566;  /* */
+}
+
+a:hover {
+    background-color: #ffffff;
+    /*border-color: #ce5c00;*/
+    color: #2e3436;
+}
+
+h1 > a:hover {
+    background-color: #ffffff;
+    color: #2e3436;  /* */
+}
+
+a:focus {
+    outline-color: #f57900;  /* */
+}
+
+code {
+    background-color: #eeeeec;  /* */
+    border-color: #888a85;  /* */
+    color: #000000;  /* */
+}
+
+samp {
+    background-color: #2e3436;  /* */
+    border-color: #000000;
+    color: #eeeeec;  /* */
+}
+
+kbd {
+    background-color: #2e3436;  /* */
+    border-color: #000000;
+    color: #8ae234;  /* */
+}
+
+/* Embedded content */
+
+img,
+video,
+audio {
+    border-color: #ffffff;  /* */
+    -webkit-box-shadow: 0 0.25em 0.25em #d3d7cf;  /* */
+    -moz-box-shadow: 0 0.25em 0.25em #d3d7cf;  /* */
+    -o-box-shadow: 0 0.25em 0.25em #d3d7cf;  /* */
+    box-shadow: 0 0.25em 0.25em #d3d7cf;  /* */
+}
+
+/* Tabular data */
+
+table {
+    background-color: #eeeeec;  /* */
+    border-color: #888a85;  /* */
+    color: #000000;  /* */
+}
+
+thead > tr:nth-of-type(odd),
+tr:nth-of-type(even) {
+    background-color: #eeeeec;
+    color: #2e3436;
+}
+
+tr:nth-of-type(odd) {
+    background-color: #ffffff;
+    color: #2e3436;
+}
+
