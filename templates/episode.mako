@@ -10,7 +10,7 @@ ${album} — Folge ${tracknumber}\
         <h2>mit ${artist}</h2>
     </hgroup>
 
-    <audio>
+    <audio controls>
 <%!
     import webhelpers.html.tags as h
 %>\
