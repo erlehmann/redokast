@@ -192,7 +192,10 @@ address {}
 
 /* Grouping content */
 
-p {}
+p {
+    margin: 0 1.5em;
+    text-align: justify;
+}
 
 p + p {
     text-indent: 1.5em;  /* <http://webtypography.net/Rhythm_and_Proportion/Blocks_and_Paragraphs/2.3.2/> */
@@ -428,18 +431,6 @@ article > video,
 article > audio {
     display: block;
     width: 34em;  /* width of parent article element minus margins (2 × 1.5em) */
-}
-
-article > p + img,
-article > p + video,
-article > p + audio {
-    margin-top: -0.75em;
-}
-
-article > img + p,
-article > video + p,
-article > audio + p {
-    margin-top: -0.75em;
 }
 
 img {}
