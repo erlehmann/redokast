@@ -23,18 +23,17 @@ ${album} — Folge ${tracknumber}\
 % for format, description in formats.items():
         ${h.link_to("Download (%s)" % description, url)}
 % endfor
-    </audio>\
+    </audio>
 
     <p>
         ${desc}
-    </p>\
+    </p>
 
     <section class=linklist>
-
-    <h1>Linkliste</h1>
-        <section>
-            <ul>
+        <h1>Linkliste</h1>
 <%
+    inlist = False
+    insection = False
     with open(episode['linklist']) as file:
         lines = file.readlines()
 %>\
@@ -44,12 +43,20 @@ ${album} — Folge ${tracknumber}\
 %>\
     % if len(line) > 0:
         % if not urlparse(line[0]).scheme:
-            </ul>
-        </section>
-        <section>
+            % if inlist:
+            </ul><% inlist = False %>
+            % endif
+            % if insection:
+        </section><% insection = False %>
+            % endif
+            % if not insection:
+        <section><% insection = True %>
+            % endif
             <h1>${" ".join(line).decode('utf-8') |x}</h1>
-            <ul>
         % else:
+            % if not inlist:
+            <ul><% inlist = True %>
+            %endif
 <%
             url = line[0]
             description = " ".join(line[1:]).decode('utf-8')
@@ -71,7 +78,11 @@ ${album} — Folge ${tracknumber}\
         % endif
     % endif
 % endfor
+        % if inlist:
             </ul>
+        % endif
+        % if insection:
         </section>
+        % endif
     </section>
 </article>
