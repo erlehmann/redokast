@@ -25,6 +25,10 @@ ${album} — Folge ${tracknumber}\
 % endfor
     </audio>\
 
+    <p>
+        ${desc}
+    </p>\
+
     <section class=linklist>
 
     <h1>Linkliste</h1>

@@ -15,11 +15,16 @@ lookup = TemplateLookup(
     encoding_errors='replace')
 
 for number, episode in episodes.iteritems():
+    print "Reading description for episode %s …" % number
+    with open(episode['description']) as descriptionfile:
+        description=descriptionfile.read()
+
     print "Rendering HTML for episode %s …" % number
     template = lookup.get_template('episode.mako')
     output = template.render(
         album=album,
         artist=artist,
+        desc=description,
         episode=episode,
         formats=formats,
         tracknumber=number)
