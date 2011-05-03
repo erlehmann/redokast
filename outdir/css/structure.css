@@ -137,7 +137,8 @@ h1 {
     font-size: 4em;
 }
 
-nav > h1 {
+nav > h1,
+.linklist > h1 {
     display: none;
 }
 
