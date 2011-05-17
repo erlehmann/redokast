@@ -27,11 +27,14 @@ section > section > h1, h2 { font-size: 1.5em; }
     <a href="$1.oga">Download: <i>$1.oga</i></a>
 </audio>
 
+<section>
+    <h1>Beschreibung</h1>
 EOF
 
 cat $1.description >> $3
 
 cat << EOF >> $3
+</section>
 <section>
     <h1>Linkliste</h1>
     <section>
