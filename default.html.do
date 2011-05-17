@@ -22,7 +22,7 @@ section > section > h1, h2 { font-size: 1.5em; }
     <h2>mit $ARTIST</h2>
 </hgroup>
 
-<audio>
+<audio controls>
     <source src="$1.oga">
     <a href="$1.oga">Download: <i>$1.oga</i></a>
 </audio>
