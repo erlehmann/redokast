@@ -7,7 +7,7 @@ cat << EOF >> $3
 <!DOCTYPE html>
 <meta charset=utf-8>
 <title>$ALBUM</title>
-<link rel=stylesheet src=style.css>
+<link rel=stylesheet href=style.css>
 
 <h1>$ALBUM</h1>
 

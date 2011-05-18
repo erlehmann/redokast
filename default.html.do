@@ -8,7 +8,7 @@ cat << EOF >> $3
 <!DOCTYPE html>
 <meta charset=utf-8>
 <title>$TITLE</title>
-<link rel=stylesheet src=style.css>
+<link rel=stylesheet href=style.css>
 
 <hgroup>
     <h1>$TITLE</h1>
