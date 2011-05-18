@@ -1,6 +1,6 @@
 for f in `ls -1 *.wav | sed 's/\(.*\)\..*/\1/'`; do
-test "$f" = "index" || redo-ifchange $f.html
-test "$f" = "index" || ALBUM=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
+redo-ifchange $f.html
+ALBUM=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
 done
 
 cat << EOF >> $3
