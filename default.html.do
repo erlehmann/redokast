@@ -1,8 +1,8 @@
 # ensure audio file has been created
 redo-ifchange $1.oga
 
-TITLE=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^title=).*$'`
-ARTIST=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^artist=).*$'`
+ALBUM=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
+DATE=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
 
 cat << EOF >> $3
 <!DOCTYPE html>
@@ -11,8 +11,8 @@ cat << EOF >> $3
 <link rel=stylesheet href=style.css>
 
 <hgroup>
-    <h1>$TITLE</h1>
-    <h2>mit $ARTIST</h2>
+    <h1>$ALBUM</h1>
+    <h2>Folge $TRACKNUMBER vom `date +%-d.%-m.%Y -d$DATE`</h2>
 </hgroup>
 
 <audio controls>

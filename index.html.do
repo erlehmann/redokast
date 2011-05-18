@@ -12,14 +12,16 @@ cat << EOF >> $3
 <h1>$ALBUM</h1>
 
 <section>
-    <h1>Was bisher geschah</h1>
+    <h1>Folgen</h1>
     <ul>
 EOF
 
 for f in `ls -1 *.html | sed 's/\(.*\)\..*/\1/'`; do
-test "$f" = "index" || TITLE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^title=).*$'`
+test "$f" = "index" || TRACKNUMBER=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^tracknumber=).*$'`
+test "$f" = "index" || DATE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
+test "$f" = "index" || DESCRIPTION=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^description=).*$'`
 test "$f" = "index" || cat << EOF >> $3
-        <li><a href="$f.html">$TITLE</a></li>
+        <li><a href="$f.html">Folge $TRACKNUMBER vom `date +%-d.%-m.%Y -d$DATE`</a> — $DESCRIPTION</li>
 EOF
 done
 
