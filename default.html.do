@@ -3,6 +3,8 @@ redo-ifchange $1.oga
 
 ALBUM=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
 DATE=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
+DESCRIPTION=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^description=).*$'`
+TRACKNUMBER=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^tracknumber=).*$'`
 
 cat << EOF >> $3
 <!DOCTYPE html>
@@ -15,19 +17,17 @@ cat << EOF >> $3
     <h2>Folge $TRACKNUMBER vom `date +%-d.%-m.%Y -d$DATE`</h2>
 </hgroup>
 
-<audio controls>
-    <source src="$1.oga">
-    <a href="$1.oga">Download: <i>$1.oga</i></a>
-</audio>
+<figure>
+    <audio controls>
+        <source src="$1.oga">
+        <a href="$1.oga">Download: <i>$1.oga</i></a>
+    </audio>
 
-<section>
-    <h1>Beschreibung</h1>
-EOF
+    <figcaption>
+        $DESCRIPTION
+    </figcaption>
+</figure>
 
-cat $1.description >> $3
-
-cat << EOF >> $3
-</section>
 <section>
     <h1>Linkliste</h1>
     <section>
