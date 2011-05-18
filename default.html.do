@@ -9,7 +9,7 @@ TRACKNUMBER=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^tr
 cat << EOF >> $3
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>$TITLE</title>
+<title>$ALBUM – Folge $TRACKNUMBER</title>
 <link rel=stylesheet href=style.css>
 
 <hgroup>
