@@ -1,6 +1,12 @@
-<h1>Test</h1>
+<h1>Eine Überschrift</h1>
 <ul>
     <li><a href=http://example.org><i>Beispiel</i></a>
-    <li><a href=http://example.org><i>Weiteres Beispiel</i></a>
-    <li><a href=http://example.org>WP: Lol Internet</a>
+    <li><a href=http://example.com><i>Weiteres Beispiel</i></a>
+    <li><a href=http://example.net>Beispiel ohne Formatierung</a>
+</ul>
+<h1>Noch eine Überschrift</h1>
+<ul>
+    <li><a href=http://example.org><i>Beispiel</i></a>
+    <li><a href=http://example.com><i>Weiteres Beispiel</i></a>
+    <li><a href=http://example.net>Beispiel ohne Formatierung</a>
 </ul>
