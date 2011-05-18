@@ -1,1 +1,5 @@
-redokast is a podcast encoding and web page generation system based on apenwarr's implementation of djb's redo.
+redokast is a podcast encoding and web page generation system using apenwarr's implementation of djb's redo.
+
+Besides redo, it needs oggenc, vorbiscomment and GNU grep.
+
+Try “redo index.html” to see how everything gets build.
