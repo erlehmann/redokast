@@ -1,0 +1,5 @@
+body, footer, hgroup, section { display: block; margin: 1em; }
+body { margin: 1em auto; width: 34em; }
+footer, h1, h2 { text-align: center; }
+h1 { font-size: 2em; }
+section > section > h1, h2 { font-size: 1.5em; }

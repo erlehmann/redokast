@@ -7,15 +7,8 @@ ARTIST=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^artist=
 cat << EOF >> $3
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>$TITLE<title>
-
-<style>
-body, footer, hgroup, section { display: block; margin: 1em; }
-body { margin: 1em auto; width: 34em; }
-footer, h1, h2 { text-align: center; }
-h1 { font-size: 2em; }
-section > section > h1, h2 { font-size: 1.5em; }
-</style>
+<title>$TITLE</title>
+<link rel=stylesheet src=style.css>
 
 <hgroup>
     <h1>$TITLE</h1>
