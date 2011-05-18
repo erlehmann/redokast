@@ -68,7 +68,7 @@ figure :last-child {
 }
 
 ul {
-    margin: 1.5em;
+    margin: 1.5em 1.5em 0;
 }
 
 a:link {
