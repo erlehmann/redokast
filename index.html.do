@@ -7,6 +7,7 @@ cat << EOF >> $3
 <!DOCTYPE html>
 <meta charset=utf-8>
 <title>$ALBUM</title>
+<link rel=alternate type=application/atom+xml href=feed.atom>
 <link rel=stylesheet href=style.css>
 
 <h1>$ALBUM</h1>
