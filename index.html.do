@@ -25,5 +25,5 @@ done
 
 cat << EOF >> $3
     </ul>
-<section>
+</section>
 EOF
