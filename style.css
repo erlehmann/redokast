@@ -1,5 +1,99 @@
-body, footer, hgroup, section { display: block; margin: 1em; }
-body { margin: 1em auto; width: 34em; }
-footer, h1, h2 { text-align: center; }
-h1 { font-size: 2em; }
-section > section > h1, h2 { font-size: 1.5em; }
+* {
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    font: inherit;
+    font-size: 100%;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: baseline;
+}
+
+html {
+    font-family: "Droid Sans", sans-serif;
+}
+
+body::before {
+    display: block;
+    font-size: 3em;
+    content: "✂";
+    height: 0;
+    position: relative;
+    top: -1.75em;  /* 5.25rem */
+}
+
+body {
+    /*color: #2e3436;
+    background-color: #ffffff;*/
+    border: 1px dashed #2e3436;
+    margin: 3em auto;
+    padding: 3em;
+    width: 27em;  /* <http://webtypography.net/Rhythm_and_Proportion/Horizontal_Motion/2.1.2/> */
+}
+
+h1 {
+    font-size: 3em;
+    line-height: 1;
+}
+
+h2,
+section > h1 {
+    font-size: 2em;
+    line-height: 0.75;
+    margin: 0.75em 0;
+}
+
+h3,
+section > section > h1
+{
+    font-size: 1.5em;
+    line-height: 1;
+    margin: 1em 0;
+}
+
+figure,
+figure > * {
+    display: block;
+    width: 100%    
+}
+
+figure > audio {
+    height: 3em;
+}
+
+figure :last-child {
+    margin-top: 1.5em;
+}
+
+ul {
+    margin: 1.5em;
+}
+
+a:link {
+    color: #204a87;
+    background-color: #ffffff;
+    border-bottom: 1px solid;
+}
+
+a:visited {
+    color: #5c3566;
+    background-color: #ffffff;
+    border-bottom: 1px solid;
+}
+
+a:focus {
+    outline: 2px solid #f57900;
+}
+
+a:active {
+    color: #ce5c00;
+    background-color: #ffffff;
+    outline: none;
+}
+
+footer {
+    display: block;
+    margin-top: 1.5em;
+}
