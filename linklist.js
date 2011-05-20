@@ -32,7 +32,7 @@ function timeToFloat(timeString) {
 }
 
 function addClickHandlers() {
-    listElements = collectionToArray(document.getElementsByTagName("li"));
+    var listElements = collectionToArray(document.getElementsByTagName("li"));
     for (e in listElements) {
         var timecodeNode = listElements[e].firstChild.nextSibling;
         var timeOffset = timeToFloat(listElements[e].id);
@@ -42,10 +42,10 @@ function addClickHandlers() {
 
 function updateLinklist() {
     var a = document.getElementsByTagName("audio")[0];
-    var highlightDuration = 1;
+    var highlightDuration = 20;
 
-    listElements = document.getElementsByTagName("li");
-    i = listElements.length;
+    var listElements = document.getElementsByTagName("li");
+    var i = listElements.length;
     while (i--) {
         var node = listElements[i];
         var nodeTime = timeToFloat(node.id);
