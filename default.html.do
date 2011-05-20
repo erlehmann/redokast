@@ -1,5 +1,5 @@
-# ensure audio file has been created
-redo-ifchange $1.oga
+# ensure audio file and link list have been created
+redo-ifchange $1.oga $1.linklist-html
 
 ALBUM=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
 DATE=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
@@ -33,7 +33,8 @@ cat << EOF >> $3
     <section>
 EOF
 
-cat $1.linklist >> $3
+cat $1.linklist-html >> $3
+rm $1.linklist-html
 
 cat << EOF >> $3
     </section>

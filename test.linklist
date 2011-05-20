@@ -1,12 +1,8 @@
-<h1>Eine Überschrift</h1>
-<ul>
-    <li><a href=http://example.org><i>Beispiel</i></a>
-    <li><a href=http://example.com><i>Weiteres Beispiel</i></a>
-    <li><a href=http://example.net>Beispiel ohne Formatierung</a>
-</ul>
-<h1>Noch eine Überschrift</h1>
-<ul>
-    <li><a href=http://example.org><i>Beispiel</i></a>
-    <li><a href=http://example.com><i>Weiteres Beispiel</i></a>
-    <li><a href=http://example.net>Beispiel ohne Formatierung</a>
-</ul>
+HTML <h1>Kapitel 1</h1>
+00:00 <http://example.org> <i>Beispiel</i>
+00:01 <http://example.com> <i>Weiteres Beispiel</i>
+00:02 <http://example.net> Beispiel ohne Formatierung
+HTML <h1>Kapitel 2</h1>
+00:03 <http://example.org> <i>Beispiel</i>
+00:04 <http://example.com> <i>Weiteres Beispiel</i>
+00:05 <http://example.net> Beispiel ohne Formatierung
