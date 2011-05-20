@@ -13,7 +13,7 @@ cat $1.linklist | while read LINE; do
     test "$INLIST" = "false" && echo '    <ol>' >> $3
     cat << EOF >> $3
         <li id="$TIMECODE">
-            <span class="timecode">$TIMECODE</span>
+            <a class="timecode" href="#$TIMECODE">$TIMECODE</a>
             <a href="$URL">$TEXT</a>
         </li>
 EOF
