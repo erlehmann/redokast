@@ -11,6 +11,8 @@ cat << EOF >> $3
 <meta charset=utf-8>
 <title>$ALBUM – Folge $TRACKNUMBER</title>
 <link rel=stylesheet href=style.css>
+<script src=domready.js></script>
+<script src=linklist.js></script>
 
 <hgroup>
     <h1>$ALBUM</h1>

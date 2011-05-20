@@ -11,6 +11,10 @@
     vertical-align: baseline;
 }
 
+[title] {
+    border-bottom: 1px dotted;
+}
+
 html {
     font-family: "Droid Sans", sans-serif;
 }
@@ -25,12 +29,10 @@ body::before {
 }
 
 body {
-    /*color: #2e3436;
-    background-color: #ffffff;*/
     border: 1px dashed #2e3436;
     margin: 3em auto;
     padding: 3em;
-    width: 27em;  /* <http://webtypography.net/Rhythm_and_Proportion/Horizontal_Motion/2.1.2/> */
+    width: 30em;  /* <http://webtypography.net/Rhythm_and_Proportion/Horizontal_Motion/2.1.2/> */
 }
 
 h1 {
@@ -67,20 +69,35 @@ figure :last-child {
     margin-top: 1.5em;
 }
 
-ul {
-    margin: 1.5em 1.5em 0;
+ol {
+    list-style-type: none;
+    margin-top: 1.5em;
+}
+
+a {
+    border-bottom: 1px solid;
 }
 
 a:link {
     color: #204a87;
     background-color: #ffffff;
-    border-bottom: 1px solid;
+}
+
+a:hover {
+    color: #ffffff;
+    background-color: #3465a4;
+    outline: 1px solid #3465a4;
 }
 
 a:visited {
     color: #5c3566;
     background-color: #ffffff;
-    border-bottom: 1px solid;
+}
+
+a:visited:hover {
+    color: #ffffff;
+    background-color: #75507b;
+    outline: 1px solid #75507b;
 }
 
 a:focus {
@@ -93,7 +110,33 @@ a:active {
     outline: none;
 }
 
+i {
+    font-style: italic;
+}
+
 footer {
     display: block;
     margin-top: 1.5em;
+}
+
+.timecode {
+    cursor: hand;
+    border-bottom: 1px solid;
+}
+
+.timecode:hover {
+    background-color: #2e3436;
+    color: #ffffff;
+    outline: 1px solid #2e3436;
+}
+
+.highlight {
+    position: relative;
+}
+
+.highlight::before {
+    display: block;
+    content: "➤";
+    left: -1.5em;
+    position: absolute;
 }
