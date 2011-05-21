@@ -43,6 +43,6 @@ cat << EOF >> $3
 </section>
 
 <footer>
-    Footertext.
+    Diese Webseite wurde generiert durch <a href="https://github.com/erlehmann/redokast"><i>redokast</i></a>.
 </footer>
 EOF
