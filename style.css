@@ -119,12 +119,14 @@ footer {
     margin-top: 1.5em;
 }
 
-.timecode {
+a.timecode {
+    background-color: #ffffff;
+    color: #2e3436;
     cursor: pointer;
     border-bottom: 1px solid;
 }
 
-.timecode:hover {
+a.timecode:hover {
     background-color: #2e3436;
     color: #ffffff;
     outline: 1px solid #2e3436;
