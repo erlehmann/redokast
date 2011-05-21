@@ -7,9 +7,9 @@ cat $1.linklist | while read LINE; do
     test "$LINEMARKER" = "HTML" && echo \ \ \ \ $HTML >> $3
     test "$LINEMARKER" = "HTML" && INLIST=false && continue
 
-    TIMECODE=`echo $LINE | grep --only-matching --perl-regexp ^.*:..(?= \<)`
-    URL=`echo $LINE | grep --only-matching --perl-regexp '(?<= \<).*:.*(?=\> )'`;
-    TEXT=`echo $LINE | grep --only-matching --perl-regexp '(?<=\> ).*$'`
+    TIMECODE=`echo $LINE | cut -d " " -f1`
+    URL=`echo $LINE | cut -d " " -f2 | tr -d "<>"`
+    TEXT=`echo $LINE | cut -d " " -f3-`
     test "$INLIST" = "false" && echo '    <ol>' >> $3
     cat << EOF >> $3
         <li id="$TIMECODE">
