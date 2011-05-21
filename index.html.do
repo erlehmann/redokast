@@ -1,4 +1,4 @@
-for f in `ls -1 *.wav | sed 's/\(.*\)\..*/\1/'`; do
+for f in `ls -1 *.input.* | sed 's/\(.*\)\.input.*/\1/'`; do
 redo-ifchange $f.html
 ALBUM=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
 done
