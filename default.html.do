@@ -36,7 +36,6 @@ cat << EOF >> $3
 EOF
 
 cat $1.linklist-html >> $3
-rm $1.linklist-html
 
 cat << EOF >> $3
     </section>

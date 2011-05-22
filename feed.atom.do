@@ -1,5 +1,5 @@
 for f in `ls -1 *.input.* | sed 's/\(.*\)\.input.*/\1/'`; do
-redo-ifchange $f.html
+redo-ifchange $f.html $f.linklist-html
 ALBUM=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^album=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 ARTIST=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^artist=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 done
@@ -25,7 +25,7 @@ for f in `ls -1 *.html | sed 's/\(.*\)\..*/\1/'`; do
 test "$f" = "index" || DATE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
 test "$f" = "index" || DESCRIPTION=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^description=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 test "$f" = "index" || TITLE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^title=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
-test "$f" = "index" || LINKLIST=`cat $f.linklist | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
+test "$f" = "index" || LINKLIST=`cat $f.linklist-html`
 test "$f" = "index" || TAG=`echo $BASEURL | sed 's/http:\/\//tag:/'`,$DATE:$f
 test "$f" = "index" || LENGTH=`du -b $f.oga | cut -f1`
 test "$f" = "index" || UPDATED=`date +%Y-%m-%dT%H:%M:%SZ -d$DATE`
@@ -37,7 +37,9 @@ test "$f" = "index" || cat << EOF >> $3
     <link rel="enclosure" type="audio/ogg" href="$BASEURL/$f.oga" length="$LENGTH"/>
     <summary>$DESCRIPTION</summary>
     <content type="html">
+        <![CDATA[
 $LINKLIST
+        ]]>
     </content>
     <updated>$UPDATED</updated>
 </entry>
