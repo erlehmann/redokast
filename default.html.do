@@ -1,5 +1,5 @@
 # ensure audio file and link list have been created
-redo-ifchange $1.oga $1.linklist-html
+redo-ifchange $1.oga $1.mp3 $1.linklist-html
 
 ALBUM=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
 DATE=`vorbiscomment -l $1.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
@@ -22,7 +22,9 @@ cat << EOF >> $3
 <figure>
     <audio controls>
         <source src="$1.oga">
+        <source src="$1.mp3">
         <a href="$1.oga">Download: <i>$1.oga</i></a>
+        <a href="$1.mp3">Download: <i>$1.mp3</i></a>
     </audio>
 
     <figcaption>

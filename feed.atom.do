@@ -26,15 +26,20 @@ test "$f" = "index" || DATE=`vorbiscomment -l $f.oga|grep --only-matching --perl
 test "$f" = "index" || DESCRIPTION=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^description=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 test "$f" = "index" || TITLE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^title=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 test "$f" = "index" || LINKLIST=`cat $f.linklist-html`
+
+test "$f" = "index" || OGALENGTH=`du -b $f.oga | cut -f1`
+test "$f" = "index" || MP3LENGTH=`du -b $f.mp3 | cut -f1`
+
 test "$f" = "index" || TAG=`echo $BASEURL | sed 's/http:\/\//tag:/'`,$DATE:$f
-test "$f" = "index" || LENGTH=`du -b $f.oga | cut -f1`
 test "$f" = "index" || UPDATED=`date +%Y-%m-%dT%H:%M:%SZ -d$DATE`
+
 test "$f" = "index" || cat << EOF >> $3
 <entry>
     <title>$TITLE</title>
     <id>$TAG</id>
     <link rel="alternate" type="text/html" href="$BASEURL/$f.html"/>
-    <link rel="enclosure" type="audio/ogg" href="$BASEURL/$f.oga" length="$LENGTH"/>
+    <link rel="enclosure" type="audio/ogg" href="$BASEURL/$f.oga" length="$OGALENGTH"/>
+    <link rel="enclosure" type="audio/mpeg href="$BASEURL/$f.mp3" length="$MP3LENGTH"/>
     <summary>$DESCRIPTION</summary>
     <content type="html">
         <![CDATA[
