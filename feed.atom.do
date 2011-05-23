@@ -39,7 +39,7 @@ test "$f" = "index" || cat << EOF >> $3
     <id>$TAG</id>
     <link rel="alternate" type="text/html" href="$BASEURL/$f.html"/>
     <link rel="enclosure" type="audio/ogg" href="$BASEURL/$f.oga" length="$OGALENGTH"/>
-    <link rel="enclosure" type="audio/mpeg href="$BASEURL/$f.mp3" length="$MP3LENGTH"/>
+    <link rel="enclosure" type="audio/mpeg" href="$BASEURL/$f.mp3" length="$MP3LENGTH"/>
     <summary>$DESCRIPTION</summary>
     <content type="html">
         <![CDATA[
