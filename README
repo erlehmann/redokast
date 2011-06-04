@@ -4,4 +4,4 @@ Besides redo, it needs oggenc, vorbiscomment (both from vorbistools), date, grep
 
 Try “redo index.html” to see how everything gets build.
 
-Included is a rudimentary upload skript, which will only work if you happen to have the password to <ftp://dieweltistgarnichtso.net> in a .netrc file. The upload skript does not (yet) upload the generated sound files.
+Included is a rudimentary upload skript, which will only work if you happen to have the password to <ftp://dieweltistgarnichtso.net> in a .netrc file.
