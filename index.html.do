@@ -3,7 +3,7 @@ redo-ifchange $f.html
 ALBUM=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
 done
 
-redo-ifchange feed.atom
+redo-always feed.atom
 
 cat << EOF >> $3
 <!DOCTYPE html>
