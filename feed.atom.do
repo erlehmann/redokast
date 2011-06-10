@@ -21,7 +21,7 @@ cat << EOF >> $3
     <updated>$NOW</updated>
 EOF
 
-for f in `ls -1 *.html | sed 's/\(.*\)\..*/\1/'`; do
+for f in `ls --reverse -1 *.html | sed 's/\(.*\)\..*/\1/'`; do
 test "$f" = "index" || DATE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
 test "$f" = "index" || DESCRIPTION=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^description=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 test "$f" = "index" || TITLE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^title=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`

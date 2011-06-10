@@ -19,7 +19,7 @@ cat << EOF >> $3
     <ul>
 EOF
 
-for f in `ls -1 *.html | sed 's/\(.*\)\..*/\1/'`; do
+for f in `ls --reverse -1 *.html | sed 's/\(.*\)\..*/\1/'`; do
 test "$f" = "index" || TRACKNUMBER=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^tracknumber=).*$'`
 test "$f" = "index" || DATE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
 test "$f" = "index" || DESCRIPTION=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^description=).*$'`
