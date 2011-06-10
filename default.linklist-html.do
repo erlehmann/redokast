@@ -1,3 +1,4 @@
+redo-always
 INLIST=false
 
 cat $1.linklist | while read LINE; do
