@@ -15,8 +15,13 @@ cat << EOF >> $3
 <h1>$ALBUM</h1>
 
 <section>
+EOF
+
+cat BASEDESCRIPTION >> $3
+
+cat << EOF >> $3
     <h1>Folgen</h1>
-    <ul>
+    <ul class=episodes>
 EOF
 
 for f in `ls --reverse -1 *.html | sed 's/\(.*\)\..*/\1/'`; do

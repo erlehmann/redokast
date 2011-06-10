@@ -71,6 +71,11 @@ figure :last-child {
 
 ol {
     list-style-type: none;
+}
+
+ol,
+p,
+ul.episodes > li {
     margin-top: 1.5em;
 }
 
