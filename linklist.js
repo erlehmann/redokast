@@ -26,7 +26,14 @@ function timeToFloat(timeString) {
     }
 
     var min = parseFloat(t[t.length-2]);
-    if (!isNaN(min)) { s += min * 60; }
+    if (!isNaN(min)) {
+        s += min * 60;
+    }
+
+    var hr =  parseFloat(t[t.length-3]);
+    if (!isNaN(hr)) {
+        s += hr * 3600;
+    }
 
     return s;
 }
