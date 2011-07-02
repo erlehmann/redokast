@@ -3,6 +3,14 @@ DomReady.ready(function() {
 
     var a = document.getElementsByTagName("audio")[0];
     a.addEventListener("timeupdate", updateLinklist, true);
+
+    var timestamp = document.location.hash.split('#')[1]
+    if (typeof timestamp !== typeof undefined) {
+        a.addEventListener("loadedmetadata", function(){
+            jumpTo(timestamp)
+            a.removeEventListener("loadedmetadata")
+        }, true)
+    }
 });
 
 function collectionToArray(collection) {
