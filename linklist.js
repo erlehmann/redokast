@@ -42,8 +42,8 @@ function addClickHandlers() {
     var listElements = collectionToArray(document.getElementsByTagName("li"));
     for (e in listElements) {
         var timecodeNode = listElements[e].firstChild.nextSibling;
-        var timeOffset = timeToFloat(listElements[e].id);
-        timecodeNode.setAttribute("onclick", "jumpTo(" + timeOffset + ")");
+        var timestamp = listElements[e].id;
+        timecodeNode.setAttribute("onclick", "jumpTo('" + timestamp + "')");
     }
 }
 
@@ -65,7 +65,7 @@ function updateLinklist() {
     }
 }
 
-function jumpTo(timeOffset) {
+function jumpTo(timestamp) {
     var a = document.getElementsByTagName("audio")[0];
-    a.currentTime = timeOffset
+    a.currentTime = timeToFloat(timestamp)
 }
