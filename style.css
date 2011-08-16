@@ -83,6 +83,13 @@ a {
     border-bottom: 1px solid;
 }
 
+a[href=""]::after {
+    background-color: white;
+    color: red;
+    content: " (Defekter Link)";
+    font-weight: bold;
+}
+
 a:link {
     color: #204a87;
     background-color: #ffffff;
