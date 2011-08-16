@@ -1,4 +1,4 @@
-redo-always
+redo-ifchange $1.linklist
 INLIST=false
 
 cat $1.linklist | while read LINE; do
