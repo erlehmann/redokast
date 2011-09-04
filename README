@@ -1,6 +1,6 @@
 redokast is a podcast encoding and web page generation system using apenwarr's implementation of djb's redo.
 
-Besides redo, it needs oggenc, vorbiscomment (both from vorbistools), date, grep (from GNU coreutils), lame and id3v2. The warumnicht branch of redokast, used for generating the podcast „Warum nicht?“, also requires ftp and sox (for postprocessing).
+Besides redo, it needs oggenc, vorbiscomment (both from vorbistools), date, grep (from GNU coreutils), lame, id3v2 and pv. The warumnicht branch of redokast, used for generating the podcast „Warum nicht?“, also requires ftp and sox (for postprocessing).
 
 Try “redo index.html” to see how everything gets build.
 
