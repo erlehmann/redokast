@@ -1,2 +1,13 @@
+# internal redo and temporary files
 .redo/*
+*.redo1.tmp
+*.linklist-html
+
+# audio input and output
 *.input.*
+*.mp3
+*.oga
+
+# HTML and ATOM output
+*.html
+feed.atom
