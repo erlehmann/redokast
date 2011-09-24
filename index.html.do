@@ -1,9 +1,7 @@
 for f in `ls -1 *.input.* | sed 's/\(.*\)\.input.*/\1/'`; do
-redo-ifchange $f.html
+redo-ifchange $f.html feed.atom
 ALBUM=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
 done
-
-redo-always feed.atom
 
 cat << EOF >> $3
 <!DOCTYPE html>
