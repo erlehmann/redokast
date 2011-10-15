@@ -126,6 +126,10 @@ i {
     font-style: italic;
 }
 
+del {
+    text-decoration: line-through;
+}
+
 footer {
     display: block;
     margin-top: 1.5em;
