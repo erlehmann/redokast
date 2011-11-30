@@ -49,7 +49,7 @@ function timeToFloat(timeString) {
 function addClickHandlers() {
     var listElements = collectionToArray(document.getElementsByTagName("li"));
     for (e in listElements) {
-        var timecodeNode = listElements[e].firstChild.nextSibling;
+        var timecodeNode = listElements[e].firstChild;
         var timestamp = listElements[e].id;
         timecodeNode.setAttribute("onclick", "jumpTo('" + timestamp + "')");
     }
