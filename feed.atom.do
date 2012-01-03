@@ -1,7 +1,6 @@
 for f in `ls -1 *.input.* | sed 's/\(.*\)\.input.*/\1/'`; do
 redo-ifchange $f.html $f.linklist-html $f.vorbiscomment
 ALBUM=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^album=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
-ARTIST=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^artist=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 done
 
 BASEURL=`cat BASEURL`
@@ -14,14 +13,12 @@ cat << EOF >> $3
 <feed xmlns="http://www.w3.org/2005/Atom">
  <title>$ALBUM</title>
  <id>$TAG</id>
- <author>
-  <name>$ARTIST</name>
- </author>
  <link rel="self" href="$BASEURL/feed.atom"/>
  <updated>$NOW</updated>
 EOF
 
 for f in `ls -1 *.html | sort -t '-' -nk 2 --reverse | sed 's/\(.*\)\..*/\1/'`; do
+test "$f" = "index" || ARTIST=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^artist=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 test "$f" = "index" || DATE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
 test "$f" = "index" || DESCRIPTION=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^description=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 test "$f" = "index" || TITLE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^title=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
@@ -37,6 +34,9 @@ test "$f" = "index" || cat << EOF >> $3
 <entry>
  <title>$TITLE</title>
  <id>$TAG</id>
+ <author>
+  <name>$ARTIST</name>
+ </author>
  <link rel="alternate" type="text/html" href="$BASEURL/$f.html"/>
  <link rel="enclosure" type="audio/ogg" href="$BASEURL/$f.oga" length="$OGALENGTH"/>
  <link rel="enclosure" type="audio/mpeg" href="$BASEURL/$f.mp3" length="$MP3LENGTH"/>
