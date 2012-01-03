@@ -71,6 +71,11 @@ function updateLinklist() {
             node.removeAttribute("class");
         }
     }
+
+    document.getElementById('linklist').scrollTop = (
+        document.getElementsByClassName('highlight')[0].offsetTop -
+        document.getElementById('linklist').offsetTop
+        )
 }
 
 function jumpTo(timestamp) {
