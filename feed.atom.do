@@ -5,35 +5,38 @@ done
 
 BASEURL=`cat BASEURL`
 BASEDATE=`cat BASEDATE`
-TAG=`echo $BASEURL | sed 's/http:\/\//tag:/'`,$BASEDATE:feed.atom
 NOW=`date +%Y-%m-%dT%H:%M:%SZ`
+
+redo-ifchange feed.tag
 
 cat << EOF >> $3
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  <title>$ALBUM</title>
- <id>$TAG</id>
+ <id>`cat feed.tag`</id>
  <link rel="self" href="$BASEURL/feed.atom"/>
  <updated>$NOW</updated>
 EOF
 
 for f in `ls -1 *.html | sort -t '-' -nk 2 --reverse | sed 's/\(.*\)\..*/\1/'`; do
-test "$f" = "index" || ARTIST=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^artist=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
-test "$f" = "index" || DATE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
-test "$f" = "index" || DESCRIPTION=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^description=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
-test "$f" = "index" || TITLE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^title=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
-test "$f" = "index" || LINKLIST=`cat $f.linklist-html`
+test "$f" = "index" ||  {
+  redo-ifchange $f.tag
 
-test "$f" = "index" || OGALENGTH=`du -b $f.oga | cut -f1`
-test "$f" = "index" || MP3LENGTH=`du -b $f.mp3 | cut -f1`
+  ARTIST=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^artist=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
+  DATE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
+  DESCRIPTION=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^description=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
+  TITLE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^title=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
+  LINKLIST=`cat $f.linklist-html`
 
-test "$f" = "index" || TAG=`echo $BASEURL | sed 's/http:\/\//tag:/'`,$DATE:$f
-test "$f" = "index" || UPDATED=`date +%Y-%m-%dT%H:%M:%SZ -d$DATE`
+  OGALENGTH=`du -b $f.oga | cut -f1`
+  MP3LENGTH=`du -b $f.mp3 | cut -f1`
 
-test "$f" = "index" || cat << EOF >> $3
+  UPDATED=`date +%Y-%m-%dT%H:%M:%SZ -d$DATE`
+
+  cat << EOF >> $3
 <entry>
  <title>$TITLE</title>
- <id>$TAG</id>
+ <id>`cat $f.tag`</id>
  <author>
   <name>$ARTIST</name>
  </author>
@@ -49,6 +52,8 @@ $LINKLIST
  <updated>$UPDATED</updated>
 </entry>
 EOF
+}
+
 done
 
 cat << EOF >> $3
