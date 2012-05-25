@@ -15,11 +15,11 @@ cat $1.linklist | while read LINE; do
 
     # check if http/https URLs are accessible
     echo -n .
-    echo $URL | head -c4 | grep -q "http" && (
-        curl -A "redokast/2011-10-22" -m 20 -isk $URL | head -n1 | \
+    echo "$URL" | head -c4 | grep -q "http" && (
+        curl -A "redokast/2012-05-25" -m 20 -isk "$URL" | head -n1 | \
             egrep -q "200|301|302|401|405" || (
                 echo; echo; echo "<$URL> is not accessible."
-                echo; curl -A "redokast/2011-10-22" -m 20 -Isk $URL
+                echo; curl -A "redokast/2012-05-25" -m 20 -Isk "$URL"
                 false
             )
     )
