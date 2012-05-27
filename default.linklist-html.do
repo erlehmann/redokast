@@ -24,7 +24,7 @@ cat $1.linklist | while read LINE; do
             )
     )
 
-    TEXT=`echo $LINE | cut -d " " -f3-`
+    TEXT=`echo "$LINE" | cut -d " " -f3-`
     test "$INLIST" = "false" && echo '<ol>' >> $3
     cat << EOF >> $3
  <li id="$TIMECODE"><a class="timecode" href="#$TIMECODE">$TIMECODE</a>
