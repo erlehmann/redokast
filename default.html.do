@@ -34,7 +34,7 @@ cat << EOF >> $3
 
 <section>
     <h1>Linkliste</h1>
-    <section id=linklist>
+    <section>
 EOF
 
 cat $1.linklist-html >> $3
