@@ -9,8 +9,15 @@ def html_line(tokens):
     html = '</ol>\n' + ' '.join(tokens[1:]) + '\n' + '<ol>\n'
     return html
 
+timestamps = []
+
 def link_line(tokens):
     timestamp = tokens[0]
+
+    if timestamp in timestamps:
+        stderr.write('Duplicate timestamp: %s\n' % timestamp)
+        raise RuntimeError
+    timestamps.append(timestamp)
 
     url_with_brackets = tokens[1]
     try:
