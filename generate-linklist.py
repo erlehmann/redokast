@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # irgendwas mit UTF-8
 
-from requests import get, head, ConnectionError
+from requests import get, head, ConnectionError, Timeout
 from sys import argv, stderr, stdout
 from urllib2 import urlparse
 
@@ -26,12 +26,14 @@ def link_line(tokens):
     # TODO: check if it really is a url
     if scheme == 'http' or scheme == 'https':
         try:
-            request = head(url)
+            request = head(url, timeout=10)
             # some web site operators cannot into head requests
             if (request.status_code == 404) and host == 'bitlove.org' or \
                 (request.status_code == 405) or \
                 (request.status_code == 500):
                 request = get(url)
+        except Timeout as e:
+            stderr.write('\nConnection to <' + url + '> timeouted.')
         except ConnectionError as e:
             stderr.write(str(e) + '\n')
             exit(1)
