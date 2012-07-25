@@ -35,9 +35,8 @@ def link_line(tokens):
         try:
             request = head(url, timeout=10)
             # some web site operators cannot into head requests
-            if (request.status_code == 404) and host == 'bitlove.org' or \
-                (request.status_code == 405) or \
-                (request.status_code == 500):
+            if (request.status_code == 405) or \
+               (request.status_code == 500):
                 request = get(url)
         except Timeout as e:
             stderr.write('\nConnection to <' + url + '> timeouted.')
