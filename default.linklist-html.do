@@ -1,2 +1,2 @@
-redo-ifchange $1.linklist
-./generate-linklist.py $1.linklist >> $3
+redo-ifchange $2.linklist
+./generate-linklist.py $2.linklist >> $3
