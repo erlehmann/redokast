@@ -2,8 +2,11 @@
 # irgendwas mit UTF-8
 
 from requests import get, head, ConnectionError, Timeout
+from werkzeug.contrib.cache import FileSystemCache
 from sys import argv, stderr, stdout
 from urllib2 import urlparse
+
+url_status_cache = FileSystemCache('cache_dir', 3600)
 
 def html_line(tokens):
     html = '</ol>\n' + ' '.join(tokens[1:]) + '\n' + '<ol>\n'
@@ -32,22 +35,26 @@ def link_line(tokens):
 
     # TODO: check if it really is a url
     if scheme == 'http' or scheme == 'https':
-        try:
-            request = head(url, timeout=10)
-            # some web site operators cannot into head requests
-            if (request.status_code == 405) or \
-               (request.status_code == 500):
-                request = get(url)
-        except Timeout as e:
-            stderr.write('\nConnection to <' + url + '> timeouted.')
-        except ConnectionError as e:
-            stderr.write(str(e) + '\n')
-            exit(1)
-        if request.ok:
+        if url_status_cache.get(url) == True:
             stderr.write('.')
         else:
-            stderr.write('\n<' + url + '> is unreachable.\n')
-            exit(1)
+            try:
+                request = head(url, timeout=10)
+                # some web site operators cannot into head requests
+                if (request.status_code == 405) or \
+                   (request.status_code == 500):
+                    request = get(url)
+            except Timeout as e:
+                stderr.write('\nConnection to <' + url + '> timeouted.')
+            except ConnectionError as e:
+                stderr.write(str(e) + '\n')
+                exit(1)
+            if request.ok:
+                url_status_cache.set(url, request.ok)
+                stderr.write('.')
+            else:
+                stderr.write('\n<' + url + '> is unreachable.\n')
+                exit(1)
 
     text = ' '.join(tokens[2:])
 
