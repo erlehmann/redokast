@@ -2,6 +2,6 @@ redokast is a podcast encoding and web page generation system using apenwarr's i
 
 Besides redo, it needs oggenc, vorbiscomment (both from vorbistools), date, grep (from GNU coreutils), lame, id3v2, pv, python 2.x and python-requests.
 
-Try “redo --old-args index.html” to see how everything gets build.
+Try “redo” to see how everything gets build.
 
 Included is a rudimentary upload skript, which will only work if you happen to have the password to <ftp://dieweltistgarnichtso.net> in a .netrc file.
