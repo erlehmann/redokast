@@ -40,18 +40,19 @@ def link_line(tokens):
             try:
                 request = head(url, timeout=10)
                 # some web site operators cannot into head requests
-                if (request.status_code == 405) or \
-                   (request.status_code == 500):
+                if (request.status_code in (403, 405, 500)):
                     request = get(url)
             except Timeout as e:
-                stderr.write('\nConnection to <' + url + '> timeouted.')
+                stderr.write('Connection to <' + url + '> timeouted.')
+                exit(1)
             except ConnectionError as e:
+                stderr.write('Connection to <' + url + '> failed.\n')
                 stderr.write(str(e) + '\n')
                 exit(1)
             if request.ok:
                 url_status_cache.set(url, request.ok)
             else:
-                stderr.write('\n<' + url + '> is unreachable.\n')
+                stderr.write('<' + url + '> is unreachable.\n')
                 exit(1)
 
     text = ' '.join(tokens[2:])
