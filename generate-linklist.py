@@ -3,6 +3,7 @@
 
 from requests import get, head, ConnectionError, Timeout
 from werkzeug.contrib.cache import FileSystemCache
+from progressbar import Bar, ProgressBar, SimpleProgress
 from sys import argv, stderr, stdout
 from urllib2 import urlparse
 
@@ -35,9 +36,7 @@ def link_line(tokens):
 
     # TODO: check if it really is a url
     if scheme == 'http' or scheme == 'https':
-        if url_status_cache.get(url) == True:
-            stderr.write('.')
-        else:
+        if url_status_cache.get(url) is not True:
             try:
                 request = head(url, timeout=10)
                 # some web site operators cannot into head requests
@@ -51,7 +50,6 @@ def link_line(tokens):
                 exit(1)
             if request.ok:
                 url_status_cache.set(url, request.ok)
-                stderr.write('.')
             else:
                 stderr.write('\n<' + url + '> is unreachable.\n')
                 exit(1)
@@ -65,13 +63,18 @@ def link_line(tokens):
 
 with open(argv[1]) as linklist:
     stdout.write('<ol>\n')
-    for line in linklist:
-        tokens = line.split()
-        if tokens[0] == 'HTML':
-            html = html_line(tokens)
-            stdout.write(html)
-        else:
-            html = link_line(tokens)
-            stdout.write(html)
-    stdout.write('</ol>\n')
-    stderr.write('\n')
+    lines = [line for line in linklist]
+
+widgets = [Bar(), SimpleProgress()]
+pbar = ProgressBar(widgets=widgets, maxval=len(lines)).start()
+for i, line in enumerate(lines):
+    tokens = line.split()
+    if tokens[0] == 'HTML':
+        html = html_line(tokens)
+        stdout.write(html)
+    else:
+        html = link_line(tokens)
+        stdout.write(html)
+    pbar.update(i+1)
+stdout.write('</ol>\n')
+pbar.finish()
