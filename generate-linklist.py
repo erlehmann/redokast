@@ -7,7 +7,7 @@ from progressbar import Bar, ProgressBar, SimpleProgress
 from sys import argv, stderr, stdout
 from urllib2 import urlparse
 
-url_status_cache = FileSystemCache('cache_dir', 3600)
+url_status_cache = FileSystemCache('cache_dir', threshold=10000, default_timeout=3600)
 
 def html_line(tokens):
     html = '</ol>\n' + ' '.join(tokens[1:]) + '\n' + '<ol>\n'
