@@ -1,1 +1,1 @@
-redo-ifchange index.html
+redo index.html
