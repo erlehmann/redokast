@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# irgendwas mit UTF-8
+# -*- coding: utf-8 -*-
 
 from requests import get, head, ConnectionError, Timeout
 from werkzeug.contrib.cache import FileSystemCache
@@ -62,12 +62,19 @@ def link_line(tokens):
     html += '  <a href="%s">%s</a>\n' % (url, text)
     return html
 
-with open(argv[1]) as linklist:
-    stdout.write('<ol>\n')
+filename = argv[1]
+with open(filename) as linklist:
     lines = [line for line in linklist]
+
+if len(lines) == 0:
+    stderr.write('“%s” is empty. Exiting …\n' % filename)
+    exit(0)
+
+stdout.write('<ol>\n')
 
 widgets = [Bar(), SimpleProgress()]
 pbar = ProgressBar(widgets=widgets, maxval=len(lines)).start()
+
 for i, line in enumerate(lines):
     tokens = line.split()
     if tokens[0] == 'HTML':
