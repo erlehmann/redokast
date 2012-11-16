@@ -8,11 +8,22 @@ def _npt_to_timestamp(npt):
     nptparts = npt.split(':')
     hours = int(nptparts[1])
     minutes = int(nptparts[2])
-    seconds = int(nptparts[3])
+    secparts = nptparts[3].split('.')
+    seconds = int(secparts[0])
+    try:
+        fracseconds = int(secparts[1])
+    except ValueError:  # empty string
+        fracseconds = 0
     if hours == 0:
-        return "%d:%02d" % (minutes, seconds)
+        if fracseconds == 0:
+            return "%d:%02d" % (minutes, seconds)
+        else:
+            return "%d:%02d.%d" % (minutes, seconds, fracseconds)
     else:
-        return "%d:%02d:%02d" % (hours, minutes, seconds)
+        if fracseconds == 0:
+            return "%d:%02d:%02d" % (hours, minutes, seconds)
+        else:
+            return "%d:%02d:%02d.%d" % (hours, minutes, seconds, fracseconds)
 
 def serialize_to_plaintext_format(data):
     text = ''
