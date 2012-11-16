@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from sys import argv
+from sys import argv, stdin, stdout
 from w3lib.html import remove_tags
 
 def parse_plaintext_format(text):
     data = []
 
-    for row in text:
+    for row in text.split('\n'):
         rowparts = row.strip().split(' ')
         if len(rowparts) < 2:
             break
@@ -35,7 +35,6 @@ def _timestamp_to_npt(timestamp):
         npt += '0:%d:%d' % (parts[0], parts[1])
     elif len(parts) == 3:
         npt += '%d:%d:%d' % (parts[0], parts[1], parts[2])
-    npt += '.'
     return npt
 
 def serialize_to_cmml(data):
@@ -51,8 +50,6 @@ def serialize_to_cmml(data):
             )
     xml += '</cmml>\n'
     return xml
-        
 
-with open(argv[1]) as f:
-    data = parse_plaintext_format(f.readlines())
-    print serialize_to_cmml(data)
+data = parse_plaintext_format(stdin.read())
+stdout.write(serialize_to_cmml(data))

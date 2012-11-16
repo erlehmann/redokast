@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from sys import argv
+from sys import argv, stdin, stdout
 from xml.etree.ElementTree import ElementTree, XML
 
 def _npt_to_timestamp(npt):
@@ -15,10 +15,10 @@ def _npt_to_timestamp(npt):
         return "%d:%02d:%02d" % (hours, minutes, seconds)
 
 def serialize_to_plaintext_format(data):
-    textparts = []
+    text = ''
     for row in data:
-        textparts.append('%s %s' % (row['timestamp'], row['text']))
-    return '\n'.join(textparts)
+        text += "%s %s\n" % (row['timestamp'], row['text'])
+    return text
 
 def parse_cmml(cmml):
     data = []
@@ -37,6 +37,5 @@ def parse_cmml(cmml):
         )
     return data
 
-with open(argv[1]) as f:
-    data = parse_cmml(f.read())
-    print serialize_to_plaintext_format(data)
+data = parse_cmml(stdin.read())
+stdout.write(serialize_to_plaintext_format(data))
