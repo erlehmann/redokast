@@ -29,13 +29,31 @@ def parse_plaintext_format(text):
     return data
 
 def _timestamp_to_npt(timestamp):
-    parts = [int(n) for n in timestamp.split(':')]
-    npt = 'npt:'
-    if len(parts) == 2:
-        npt += '0:%d:%d' % (parts[0], parts[1])
-    elif len(parts) == 3:
-        npt += '%d:%d:%d' % (parts[0], parts[1], parts[2])
-    return npt
+    parts = timestamp.split(':')
+    print parts
+    try:
+        hours = int(parts[-3])
+    except IndexError:
+        hours = 0
+    minutes = int(parts[-2])
+    secparts = parts[-1].split('.')
+    seconds = int(secparts[0])
+    try:
+        fracseconds = int(secparts[1])
+    except IndexError:
+        fracseconds = 0
+    except ValueError:
+        fracseconds = 0
+    if hours == 0:
+        if secparts == 0:
+            return "npt:0:%d:%d" % (minutes, seconds)
+        else:
+            return "npt:0:%d:%d.%d" % (minutes, seconds, fracseconds)
+    else:
+        if secparts == 0:
+            return "npt:%d:%d:%d" % (hours, minutes, seconds)
+        else:
+            return "npt:%d:%d:%d.%d" % (hours, minutes, seconds, fracseconds)
 
 def serialize_to_cmml(data):
     xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

@@ -12,7 +12,9 @@ def _npt_to_timestamp(npt):
     seconds = int(secparts[0])
     try:
         fracseconds = int(secparts[1])
-    except ValueError:  # empty string
+    except IndexError:
+        fracseconds = 0
+    except ValueError:
         fracseconds = 0
     if hours == 0:
         if fracseconds == 0:
