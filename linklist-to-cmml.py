@@ -30,7 +30,6 @@ def parse_plaintext_format(text):
 
 def _timestamp_to_npt(timestamp):
     parts = timestamp.split(':')
-    print parts
     try:
         hours = int(parts[-3])
     except IndexError:
