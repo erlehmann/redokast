@@ -28,6 +28,7 @@ test "$f" = "index" ||  {
   TITLE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^title=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
   LINKLIST=`cat $f.linklist-html`
 
+  OPUSLENGTH=`du -b $f.opus | cut -f1`
   OGALENGTH=`du -b $f.oga | cut -f1`
   MP3LENGTH=`du -b $f.mp3 | cut -f1`
 
@@ -41,7 +42,8 @@ test "$f" = "index" ||  {
   <name>$ARTIST</name>
  </author>
  <link rel="alternate" type="text/html" href="$BASEURL/$f.html"/>
- <link rel="enclosure" type="audio/ogg" href="$BASEURL/$f.oga" length="$OGALENGTH"/>
+ <link rel="enclosure" type="audio/ogg; codecs=opus" href="$BASEURL/$f.opus" length="$OPUSLENGTH"/>
+ <link rel="enclosure" type="audio/ogg; codecs=vorbis" href="$BASEURL/$f.oga" length="$OGALENGTH"/>
  <link rel="enclosure" type="audio/mpeg" href="$BASEURL/$f.mp3" length="$MP3LENGTH"/>
  <summary>$DESCRIPTION</summary>
  <content type="html">

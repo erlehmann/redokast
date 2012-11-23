@@ -1,5 +1,5 @@
 # ensure audio file and link list have been created
-redo-ifchange $2.oga $2.mp3 $2.linklist
+redo-ifchange $2.opus $2.oga $2.mp3 $2.linklist
 
 ./validate-links.py < $2.linklist
 
@@ -23,8 +23,10 @@ cat << EOF >> $3
 
 <figure>
     <audio controls>
-        <source src="$2.oga">
-        <source src="$2.mp3">
+        <source src="$2.opus" type="audio/ogg; codecs=opus">
+        <source src="$2.oga" type="audio/ogg; codecs=vorbis">
+        <source src="$2.mp3" type="audio/mpeg">
+        <a href="$2.opus">Download: <i>$2.opus</i></a>
         <a href="$2.oga">Download: <i>$2.oga</i></a>
         <a href="$2.mp3">Download: <i>$2.mp3</i></a>
     </audio>
