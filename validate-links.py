@@ -26,7 +26,8 @@ def validate_links(data):
             try:
                 request = head(url, timeout=10)
                 # some web sites cannot into head requests
-                if request.status_code in (403, 405, 500):
+                if request.status_code in (403, 405, 500) or \
+                    host in ('mobil.morgenpost.de'):
                     request = get(url)
             except Timeout as e:
                 stderr.write('Connection to <%s> timeouted.\n' % url)
