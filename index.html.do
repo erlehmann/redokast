@@ -21,7 +21,7 @@ cat BASEDESCRIPTION >> $3
 
 cat << EOF >> $3
     <h1>Folgen</h1>
-    <ul class=episodes>
+    <ol class=episodes>
 EOF
 
 for f in `ls -1 *.html | sort -t '-' -nk 2 --reverse | sed 's/\(.*\)\..*/\1/'`; do
@@ -29,11 +29,11 @@ test "$f" = "index" || TRACKNUMBER=`vorbiscomment -l $f.oga|grep --only-matching
 test "$f" = "index" || DATE=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
 test "$f" = "index" || DESCRIPTION=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^description=).*$'`
 test "$f" = "index" || cat << EOF >> $3
-        <li><a href="$f.html">Folge $TRACKNUMBER vom `date +%-d.%-m.%Y -d$DATE`</a> — $DESCRIPTION</li>
+        <li><a href="$f.html">Folge $TRACKNUMBER vom `date +%-d.%-m.%Y -d$DATE`</a> — $DESCRIPTION
 EOF
 done
 
 cat << EOF >> $3
-    </ul>
+    </ol>
 </section>
 EOF

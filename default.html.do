@@ -1,5 +1,7 @@
 # ensure audio file and link list have been created
-redo-ifchange $2.oga $2.mp3 $2.linklist-html
+redo-ifchange $2.oga $2.mp3 $2.linklist
+
+./validate-links.py < $2.linklist
 
 ALBUM=`vorbiscomment -l $2.oga|grep --only-matching --perl-regexp '(?<=^album=).*$'`
 DATE=`vorbiscomment -l $2.oga|grep --only-matching --perl-regexp '(?<=^date=).*$'`
@@ -33,14 +35,25 @@ cat << EOF >> $3
 </figure>
 
 <section>
-    <h1>Linkliste</h1>
-    <section>
+<h1>Kapitel</h1>
+<section>
 EOF
 
-cat $2.linklist-html >> $3
+./generate-chapterlist.py < $2.linklist >> $3
 
 cat << EOF >> $3
-    </section>
+</section>
+</section>
+
+<section>
+<h1>Links</h1>
+<section>
+EOF
+
+./generate-linklist.py < $2.linklist >> $3
+
+cat << EOF >> $3
+</section>
 </section>
 
 <footer>

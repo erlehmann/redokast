@@ -19,18 +19,8 @@ html {
     font-family: "Droid Sans", sans-serif;
 }
 
-body::before {
-    display: block;
-    font-size: 3em;
-    content: "✂";
-    height: 0;
-    position: relative;
-    top: -1.75em;  /* 5.25rem */
-}
-
 body {
-    border: 1px dashed #2e3436;
-    margin: 3em auto;
+    margin: 0 auto;
     padding: 3em;
     width: 30em;  /* <http://webtypography.net/Rhythm_and_Proportion/Horizontal_Motion/2.1.2/> */
 }
@@ -58,7 +48,7 @@ section > section > h1
 figure,
 figure > * {
     display: block;
-    width: 100%    
+    width: 100%;
 }
 
 figure > audio {
@@ -73,10 +63,14 @@ ol {
     list-style-type: none;
 }
 
-ol,
 p,
+table,
 ul.episodes > li {
     margin-top: 1.5em;
+}
+
+table td {
+    min-width: 3em;
 }
 
 a {
@@ -135,26 +129,30 @@ footer {
     margin-top: 1.5em;
 }
 
-a.timecode {
+a[href^=\#t\=],
+a[href^=\#t\=]::before {
     background-color: #ffffff;
     color: #2e3436;
+}
+
+a[href^=\#t\=] {
     cursor: pointer;
     border-bottom: 1px solid;
 }
 
-a.timecode:hover {
+a[href^=\#t\=]:hover {
     background-color: #2e3436;
     color: #ffffff;
     outline: 1px solid #2e3436;
 }
 
-.highlight {
+tr.highlight > td > a[href^=\#t\=] {
     position: relative;
 }
 
-.highlight::before {
+tr.highlight > td > a[href^=\#t\=]::before {
     display: block;
-    content: "▶";
+    content: "★";
     left: -1.75em;
     position: absolute;
 }

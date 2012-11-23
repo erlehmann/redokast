@@ -47,11 +47,11 @@ function timeToFloat(timeString) {
 }
 
 function addClickHandlers() {
-    var listElements = collectionToArray(document.getElementsByTagName("li"));
-    for (e in listElements) {
-        var timecodeNode = listElements[e].firstChild;
-        var timestamp = listElements[e].id;
-        timecodeNode.setAttribute("onclick", "jumpTo('" + timestamp + "')");
+    var tableRowElements = collectionToArray(document.getElementsByTagName("tr"));
+    for (e in tableRowElements) {
+        var timecodeNode = tableRowElements[e].firstChild.firstChild;
+        var time = tableRowElements[e].id.substring(2);
+        timecodeNode.setAttribute("onclick", "jumpTo('" + time + "')");
     }
 }
 
@@ -59,11 +59,12 @@ function updateLinklist() {
     var a = document.getElementsByTagName("audio")[0];
     var highlightDuration = 20;
 
-    var listElements = document.getElementsByTagName("li");
-    var i = listElements.length;
+    var tableRowElements = document.getElementsByTagName("tr");
+    var i = tableRowElements.length;
     while (i--) {
-        var node = listElements[i];
-        var nodeTime = timeToFloat(node.id);
+        var node = tableRowElements[i];
+        var nodeTime = timeToFloat(node.id.substring(2));
+        console.log(node, nodeTime);
         if ((a.currentTime > nodeTime) && (a.currentTime < (nodeTime + highlightDuration))) {
             node.setAttribute("class", "highlight");
         }
