@@ -1,13 +1,20 @@
 # internal redo and temporary files
 .redo/*
 *.redo1.tmp
-*.linklist-html
+*.redo2.tmp
+
+# temporary files
+cache_dir/*
+*.pyc
 
 # audio input and output
 *.input.*
 *.mp3
 *.oga
+*.opus
 
-# HTML and ATOM output
-*.html
+# output
 feed.atom
+*.cmml
+*.html
+*.webvtt
