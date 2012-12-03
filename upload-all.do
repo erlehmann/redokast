@@ -1,6 +1,8 @@
 for f in `ls -1 *.input.* | sed 's/\(.*\)\.input.*/\1/'`; do
     echo $f.oga.upload
+    echo $f.opus.upload
     echo $f.mp3.upload
+    echo $f.webvtt.upload
     echo $f.html.upload
 done | xargs redo-ifchange
 

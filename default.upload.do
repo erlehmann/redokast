@@ -1,8 +1,6 @@
 redo-ifchange $2
 
-exec >&2  # redirect stdout to stderr
-ftp -vi dieweltistgarnichtso.net << EOF
-cd hosts/warumnicht.dieweltistgarnichtso.net
-hash
-put $2
-bye
+BASEFOLDER=`cat BASEFOLDER`
+test -e $BASEFOLDER
+pv $2 > $BASEFOLDER/TEMPFILE
+mv $BASEFOLDER/TEMPFILE $BASEFOLDER/$2
