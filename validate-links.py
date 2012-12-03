@@ -9,7 +9,7 @@ from sys import stdin, stderr
 from werkzeug.contrib.cache import FileSystemCache
 from urllib2 import urlparse
 
-url_status_cache = FileSystemCache('cache_dir', \
+url_status_cache = FileSystemCache('.cache_dir', \
     threshold=10000, default_timeout=3600)
 
 def validate_links(data):
