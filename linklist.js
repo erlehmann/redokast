@@ -64,7 +64,6 @@ function updateLinklist() {
     while (i--) {
         var node = tableRowElements[i];
         var nodeTime = timeToFloat(node.id.substring(2));
-        console.log(node, nodeTime);
         if ((a.currentTime > nodeTime) && (a.currentTime < (nodeTime + highlightDuration))) {
             node.setAttribute("class", "highlight");
         }
