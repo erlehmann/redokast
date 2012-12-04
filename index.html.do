@@ -21,7 +21,7 @@ cat BASEDESCRIPTION >> $3
 
 cat << EOF >> $3
     <h1>Folgen</h1>
-    <ol class=episodes>
+    <ol class=episodes reversed>
 EOF
 
 for f in `ls -1 *.html | sort -t '-' -nk 2 --reverse | sed 's/\(.*\)\..*/\1/'`; do
