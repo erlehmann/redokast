@@ -15,13 +15,15 @@ def _time_to_npt(timestamp, webvtt_timestamp=False):
         fracseconds = 0
     except ValueError:
         fracseconds = 0
+    if webvtt_timestamp:
+        return "%02d:%02d:%02d.%03d" % (hours, minutes, seconds, fracseconds)
     if hours == 0:
-        if fracseconds == 0 and not webvtt_timestamp:
+        if fracseconds == 0:
             return "%02d:%02d" % (minutes, seconds)
         else:
             return "%02d:%02d.%03d" % (minutes, seconds, fracseconds)
     else:
-        if fracseconds == 0 and not webvtt_timestamp:
+        if fracseconds == 0:
             return "%d:%02d:%02d" % (hours, minutes, seconds)
         else:
             return "%d:%02d:%02d.%03d" % (hours, minutes, seconds, fracseconds)
