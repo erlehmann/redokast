@@ -51,11 +51,11 @@ figure > * {
     width: 100%;
 }
 
-figure > audio {
-    height: 4.5em;
+audio {
+    height: 3em;
 }
 
-figure :last-child {
+figure > :last-child {
     margin-top: 1.5em;
 }
 

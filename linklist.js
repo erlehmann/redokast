@@ -1,4 +1,4 @@
-DomReady.ready(function() {
+jQuery(document).ready(function($) {
     addClickHandlers();
 
     var a = document.getElementsByTagName("audio")[0];
