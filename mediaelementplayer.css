@@ -6,10 +6,6 @@
 	height: 100% !important;
 }
 
-/*.mejs-container * {
-	outline: 2px solid red;
-}*/
-
 .me-plugin {
 	position: absolute;
 }
@@ -44,6 +40,7 @@
 	top: 0;
 	left: 0;
 }
+
 .mejs-mediaelement {
 	position: absolute;
 	top: 0;
@@ -51,25 +48,34 @@
 	width: 100%;
 	height: 100%;
 }
+
+.mejs-layers {
+    padding-bottom: 3em;
+}
+
 .mejs-poster {
 	position: absolute;
 	top: 0;
 	left: 0;
 }
+
 .mejs-poster img {
 	border: 0;
 	padding: 0;
 	border: 0;
 	display: block;
 }
+
 .mejs-overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
 }
+
 .mejs-overlay-play {
 	cursor: pointer;
 }
+
 .mejs-overlay-button {
 	position: absolute;
 	top: 50%;
@@ -79,12 +85,7 @@
 	margin: -50px 0 0 -50px;
 	background: url(bigplay.svg) no-repeat;
 }
-.no-svg .mejs-overlay-button { 
-	background-image: url(bigplay.png);
-}
-.mejs-overlay:hover .mejs-overlay-button {
-	background-position: 0 -100px ;
-}
+
 .mejs-overlay-loading {
 	position: absolute;
 	top: 50%;
@@ -102,13 +103,13 @@
 	background: -ms-linear-gradient(top, rgba(50,50,50,0.9), rgba(0,0,0,0.9));
 	background: linear-gradient(rgba(50,50,50,0.9), rgba(0,0,0,0.9));
 }
+
 .mejs-overlay-loading span {
 	display: block;
 	width: 80px;
 	height: 80px;
 	background: transparent url(loading.gif) 50% 50% no-repeat;
 }
-
 /* End: LAYERS */
 
 /* Start: CONTROL BAR */
@@ -116,6 +117,8 @@
 	list-style-type: none;
 	top: 0;
 	height: 3em;
+	outline: 1px solid black;
+	outline-offset: -1px;
     position: absolute;
 	width: 100%;
 }
@@ -124,24 +127,28 @@
     height: 3em;
 }
 
-.mejs-container .mejs-controls  div {
+.mejs-container .mejs-controls div {
 	list-style-type: none;
 	display: block;
 	float: left;
 	height: 1.5em;
-	width: 1.5em;
+	width: 3em;
 }
 
 .mejs-controls .mejs-button button {
     border: none;
 	cursor: pointer;
 	display: block;
-	margin: 0.75em 0;
+	outline: 1px solid black;
+	outline-offset: -1px;
+	padding: 0.75em;
 	position: absolute;
-	width: 1.5em;
+    width: 3em;
 }
 
-.no-svg .mejs-controls .mejs-button button { 
+.mejs-controls .mejs-button button:hover {
+    background-color: #2c3436;
+    color: white;
 }
 
 /* :focus for accessibility */
@@ -159,18 +166,14 @@
 	padding: 0.75em;
 	overflow: hidden;
 	text-align: center;
-	padding: auto 4px;
-	box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	-webkit-box-sizing: content-box;
 }
+
 .mejs-container .mejs-controls .mejs-time span {
 	display: block;
 	float: left;
 	width: auto;
 }
 /* End: Time (current / duration) */
-
 
 /* Start: Play/pause */
 .mejs-controls .mejs-play button::before {
@@ -278,16 +281,10 @@
 	line-height: 0;
 	border: solid 5px #eee;
 	border-color: #eee transparent transparent transparent;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
 	top: 15px;
 	left: 13px;
 
 }
-
-
-
 
 /*
 .mejs-controls .mejs-time-rail:hover .mejs-time-handle {
@@ -413,73 +410,14 @@
 /* End: Mute/Volume */
 
 /* Start: TRACK (Captions and Chapters) */
-.mejs-controls .mejs-captions-button {
-	visibility: hidden;
+.mejs-controls .mejs-captions-button,
+.mejs-controls .mejs-captions-button * {
+	display: none !important;
+	width: 0 !important;
 }
-
-.mejs-controls .mejs-captions-button button {
-    display: none;
-	background-position: -48px 0;
-}
-.mejs-controls .mejs-captions-button .mejs-captions-selector {
-	position: absolute;
-	bottom: 26px;
-	right: -10px;
-	width: 130px;
-	height: 100px;
-	background: url(background.png);
-	background: rgba(50,50,50,0.7);
-	border: solid 1px transparent;
-	padding: 10px;
-	overflow: hidden;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-}
-/*
-.mejs-controls .mejs-captions-button:hover  .mejs-captions-selector {
-	visibility: visible;
-}
-*/
-
-.mejs-controls .mejs-captions-button .mejs-captions-selector ul {
-	margin: 0;
-	padding: 0;
-	display: block;
-	list-style-type: none !important;
-	overflow: hidden;
-}
-.mejs-controls .mejs-captions-button .mejs-captions-selector ul li {
-	margin: 0 0 6px 0;
-	padding: 0;
-	list-style-type: none !important;
-	display: block;
-	color: #fff;
-	overflow: hidden;
-}
-.mejs-controls .mejs-captions-button .mejs-captions-selector ul li input {
-	clear: both;
-	float: left;
-	margin: 3px 3px 0 5px;
-}
-.mejs-controls .mejs-captions-button .mejs-captions-selector ul li label {
-	width: 100px;
-	float: left;
-	padding: 4px 0 0 0;
-	line-height: 15px;
-	font-family: helvetica, arial;
-	font-size: 10px;
-}
-
-.mejs-controls .mejs-captions-button .mejs-captions-translations {
-	font-size: 10px;
-	margin: 0 0 5px 0;
-}
-
 
 .mejs-chapters {
 	height: inherit !important;
-	margin-bottom: 1.5em;
 	opacity: 1 !important;
     position: relative;
     top: 3em;
@@ -487,60 +425,43 @@
 	width: 100% !important;
 	z-index: 1;
 }
+
 .mejs-chapters .mejs-chapter {
-	background: #222;
-    color: #fff;
-	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, startColorstr=#323232,endColorstr=#000000);		
 	overflow: hidden;
 	border: 0;
 	width: 100% !important;
 }
+
+/*.mejs-chapters .mejs-chapter:nth-child(odd) {
+    background: #ccc;
+}*/
+
 .mejs-chapters .mejs-chapter .mejs-chapter-block {
-    font-size: 0.75em;
-	padding: 0.75em;
-	display: block;
 	cursor: pointer;
+	display: block;
 	height: 1.5em;
-}
-.mejs-chapters .mejs-chapter .mejs-chapter-block-last {
-	border-right: none;
+	padding: 0.75em;
 }
 
 .mejs-chapters .mejs-chapter .mejs-chapter-block:hover {
-	/*background: #333;*/
-	background: #666;
+	background: #ccc;
 }
+
 .mejs-chapters .mejs-chapter .mejs-chapter-block .ch-title {
-	font-weight: bold;
 	display: inline-block;
 	text-overflow: ellipsis;
 	float: left;
 }
+
 .mejs-chapters .mejs-chapter .mejs-chapter-block .ch-time {
 	display: inline-block;
 	text-overflow: ellipsis;
 	float: right;
 }
 
-
-.mejs-captions-layer {
-    display: block !important;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	text-align:center;
-	line-height: 22px;
-	font-size: 12px;
-	color: #fff;
-	visibility: visible !important;
-}
-.mejs-captions-layer  a {
-	color: #fff;
-	text-decoration: underline;
-}
-.mejs-captions-layer[lang=ar] {
-	font-size: 20px;
-	font-weight: normal;
+.mejs-captions-layer,
+.mejs-captions-layer * {
+    display: none !important;
 }
 
 .mejs-captions-position {
