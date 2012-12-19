@@ -13,8 +13,6 @@ cat << EOF >> $3
 <meta charset=utf-8>
 <title>$ALBUM – Folge $TRACKNUMBER</title>
 <link rel=stylesheet href=style.css>
-<script src=jquery.min.js></script>
-<script src=mediaelement-and-player.js></script>
 
 <hgroup>
     <h1>$ALBUM</h1>
@@ -22,7 +20,7 @@ cat << EOF >> $3
 </hgroup>
 
 <figure>
-    <audio controls preload=metadata>
+    <audio id=audio controls preload=metadata>
         <!--<source src="$2.opus" type="audio/ogg; codecs=opus">-->
         <source src="$2.oga" type="audio/ogg; codecs=vorbis">
         <source src="$2.mp3" type="audio/mpeg">
@@ -63,12 +61,7 @@ cat << EOF >> $3
     Diese Webseite wurde generiert durch <a href="https://github.com/erlehmann/redokast"><i>redokast</i></a>.
 </footer>
 
+<script src=media-fragments-html-polyfill.js></script>
+<script src=domready.js></script>
 <script src=linklist.js></script>
-<link rel="stylesheet" href="mediaelementplayer.css" />
-
-<script>
-jQuery(document).ready(function($) {
-    \$('video,audio').mediaelementplayer();
-    });
-    </script>
 EOF

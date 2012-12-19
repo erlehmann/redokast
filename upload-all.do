@@ -6,4 +6,4 @@ for f in `ls -1 *.input.* | sed 's/\(.*\)\.input.*/\1/'`; do
     echo $f.html.upload
 done | xargs redo-ifchange
 
-redo-ifchange index.html.upload feed.atom.upload style.css.upload mediaelementplayer.css.upload jquery.min.js.upload mediaelement-and-player.js.upload linklist.js.upload
+redo-ifchange index.html.upload feed.atom.upload style.css.upload media-fragments-html-polyfill.js.upload linklist.js.upload

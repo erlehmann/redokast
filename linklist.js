@@ -1,16 +1,6 @@
-jQuery(document).ready(function($) {
-    addClickHandlers();
-
+DomReady.ready(function() {
     var a = document.getElementsByTagName("audio")[0];
     a.addEventListener("timeupdate", updateLinklist, true);
-
-    var timestamp = document.location.hash.split('#')[1]
-    if (typeof timestamp !== typeof undefined) {
-        a.addEventListener("loadedmetadata", function(){
-            jumpTo(timestamp)
-            a.removeEventListener("loadedmetadata")
-        }, true)
-    }
 });
 
 function collectionToArray(collection) {
@@ -46,15 +36,6 @@ function timeToFloat(timeString) {
     return s;
 }
 
-function addClickHandlers() {
-    var tableRowElements = collectionToArray(document.getElementsByTagName("tr"));
-    for (e in tableRowElements) {
-        var timecodeNode = tableRowElements[e].firstChild.firstChild;
-        var time = tableRowElements[e].id.substring(2);
-        timecodeNode.setAttribute("onclick", "jumpTo('" + time + "')");
-    }
-}
-
 function updateLinklist() {
     var a = document.getElementsByTagName("audio")[0];
     var highlightDuration = 20;
@@ -63,17 +44,13 @@ function updateLinklist() {
     var i = tableRowElements.length;
     while (i--) {
         var node = tableRowElements[i];
-        var nodeTime = timeToFloat(node.id.substring(2));
-        if ((a.currentTime > nodeTime) && (a.currentTime < (nodeTime + highlightDuration))) {
+        var mediafragment = node.firstChild.firstChild.href.split('#')[1].split('&')[1];
+        var time = timeToFloat(mediafragment.substring(2));
+        if ((a.currentTime > time) && (a.currentTime < (time + highlightDuration))) {
             node.setAttribute("class", "highlight");
         }
         else {
             node.removeAttribute("class");
         }
     }
-}
-
-function jumpTo(timestamp) {
-    var a = document.getElementsByTagName("audio")[0];
-    a.currentTime = timeToFloat(timestamp)
 }

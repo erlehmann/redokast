@@ -52,7 +52,7 @@ figure > * {
 }
 
 audio {
-    height: 3em;
+    height: 4.5em;
 }
 
 figure > :last-child {
@@ -129,28 +129,28 @@ footer {
     margin-top: 1.5em;
 }
 
-a[href^=\#t\=],
-a[href^=\#t\=]::before {
+a[href^=\#audio],
+a[href^=\#audio]::before {
     background-color: #ffffff;
     color: #2e3436;
 }
 
-a[href^=\#t\=] {
+a[href^=\#audio] {
     cursor: pointer;
     border-bottom: 1px solid;
 }
 
-a[href^=\#t\=]:hover {
+a[href^=\#audio]:hover {
     background-color: #2e3436;
     color: #ffffff;
     outline: 1px solid #2e3436;
 }
 
-tr.highlight > td > a[href^=\#t\=] {
+tr.highlight > td > a[href^=\#audio] {
     position: relative;
 }
 
-tr.highlight > td > a[href^=\#t\=]::before {
+tr.highlight > td > a[href^=\#audio]::before {
     display: block;
     content: "★";
     left: -1.75em;

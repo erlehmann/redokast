@@ -62,8 +62,7 @@ def serialize_html_table(data):
         time_npt = _time_to_npt(time)
         url = element['url']
         text = element['text']
-        html += '<tr id="t=%s"><td><a href="#t=%s">%s</a>' % \
-            (time_npt, time_npt, time)
+        html += '<tr><td><a href="#audio&t=%s">%s</a>' % (time_npt, time)
         if url == '':
             html += '<td>%s</td>' % text
         else:
