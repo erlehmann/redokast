@@ -21,7 +21,7 @@ cat << EOF >> $3
 
 <figure>
     <audio id=audio controls preload=metadata>
-        <!--<source src="$2.opus" type="audio/ogg; codecs=opus">-->
+        <source src="$2.opus" type="audio/ogg; codecs=opus">
         <source src="$2.oga" type="audio/ogg; codecs=vorbis">
         <source src="$2.mp3" type="audio/mpeg">
         <track kind="chapters" src="$2.webvtt" type="text/vtt" srclang="en">
