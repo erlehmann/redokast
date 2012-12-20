@@ -1,5 +1,5 @@
 for f in `ls -1 *.input.* | sed 's/\(.*\)\.input.*/\1/'`; do
-redo-ifchange $f.html $f.linklist-html $f.vorbiscomment
+redo-ifchange $f.html $f.opus $f.oga $f.mp3 $f.webvtt $f.linklist-html $f.vorbiscomment
 ALBUM=`vorbiscomment -l $f.oga|grep --only-matching --perl-regexp '(?<=^album=).*$' | sed 's/</\&lt;/g; s/>/\&gt;/g; s/\&/\&amp;/g;'`
 done
 
@@ -45,6 +45,7 @@ test "$f" = "index" ||  {
  <link rel="enclosure" type="audio/ogg; codecs=opus" href="$BASEURL/$f.opus" length="$OPUSLENGTH"/>
  <link rel="enclosure" type="audio/ogg; codecs=vorbis" href="$BASEURL/$f.oga" length="$OGALENGTH"/>
  <link rel="enclosure" type="audio/mpeg" href="$BASEURL/$f.mp3" length="$MP3LENGTH"/>
+ <link rel="chapters" type="text/vtt" href="$BASEURL/$f.webvtt"/>
  <summary>$DESCRIPTION</summary>
  <content type="html">
 <![CDATA[
